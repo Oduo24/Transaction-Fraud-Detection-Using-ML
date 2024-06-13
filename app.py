@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 # Load the model and scaler
 model = joblib.load('fraud_detection_model.pkl')
-scaler = joblib.load('scaler.pkl')
 
 # Mock database for users
 # Generate unique ids
