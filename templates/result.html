@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Result</title>
+    <!-- SweetAlert2 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- SweetAlert2 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Bootstrap and Popper.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Trigger SweetAlert based on Flask response
+        document.addEventListener('DOMContentLoaded', function () {
+            const result = "{{ result }}";
+            const message = "{{ message }}";
+            const icon = result === 'error' ? 'error' : 'success';
+            Swal.fire({
+                icon: icon,
+                title: result === 'error' ? 'Oops...' : 'Success!',
+                text: message,
+                footer: result === 'error' ? '<a href="/transact">Return to payment page</a>' : '<a href="/transact">Return to payment page</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to a different page
+                    window.location.href = "/"; // Replace with your desired URL
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
